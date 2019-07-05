@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "slim/php-view": "^2.0",
+        "slim/slim": "^3.12",
+        "slim/twig-view": "^2.5",
+        "twig/twig": "^2.0",
+        ,"twbs/bootstrap": "4.3.1"
+    },
+    "require-dev": {
+        "ext-pdo": "*"
+    }
+}
