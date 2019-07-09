@@ -11,10 +11,11 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 error_reporting(E_ALL ^ E_NOTICE);
 
+require_once 'AppController.php';
 require_once 'Admin.php';
 require_once 'Session.php';
 
-class Rooms {
+class Rooms extends AppController {
 
 //    public function __construct($admin, $session, $member, $member_profile) {
 //
@@ -27,10 +28,10 @@ class Rooms {
 
     public function __construct($admin, $session, $member, $member_profile) {
 
-        parent::__construct();
-
-        $this->member = 11;
-        $this->member_profile = 22;
+        parent::__construct($session);
+        $this->admin = $admin;
+        $this->member = $member;
+        $this->member_profile = $member_profile;
     }
 
     public function viewRooms( Request $request, Response $response ) {
@@ -53,11 +54,12 @@ class Rooms {
         }
     }
 
-    public function roomAdd(Request $request, Response $response){
+    public function roomAdd(Request $request, Response $response, $args){
 
         $error = "An error has occured! Please try again";
         $success = "New Room Added!";
 
+        $id = $args['id'];
         $roomName = json_decode($request->getBody())->roomName;
         $roomType = json_decode($request->getBody())->roomType;
         $description = json_decode($request->getBody())->description;

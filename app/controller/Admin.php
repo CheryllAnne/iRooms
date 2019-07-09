@@ -13,22 +13,14 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 error_reporting(E_ALL ^ E_NOTICE);
 
+require_once 'AppController.php';
 require_once 'Session.php';
 
-//class AppController{
-//
-//    public function __construct(ContainerInterface $container) {
-//
-//    }
-//
-//    public function __get( $name ) {
-//        // TODO: Implement __get() method.
-//        return $this->value[$name];
-//    }
-//}
+$loader = new Twig\Loader\FilesystemLoader(dirname(__DIR__,2) . '/public/views');
+$twig = new Twig\Environment($loader);
 
 
-class Admin{
+class Admin extends AppController {
 
     protected $database;
     protected $value = array();
@@ -38,20 +30,29 @@ class Admin{
         return $this->value[$name];
     }
 
-    public function connect(){
-        $servername = "localhost:3306";
-        $username = "root";
-        $password = "root";
-
-        $db = new PDO("mysql:host=$servername;dbname=iRoom;charset=utf8mb4", $username, $password);
-        return $db;
+    public function __construct( $session ) {
+        parent::__construct( $session );
     }
 
-    public function __construct($session) {
-        //parent::__construct();
-        $this->database = $this->connect();
-        $this->session = $session;
+    public function adLogin(Request $request, Response $response){
 
+        $error = "An error has occured! Please try again";
+        $success = "Logged In!";
+
+        $email = json_decode($request->getBody())->email; //striptags to avoid cross site scripting
+        //$password = json_decode($request->getBody())->password;
+        //$password = password_hash($password1, PASSWORD_DEFAULT);
+        $login = "SELECT * FROM `admin` WHERE email = ? "; ///////////
+        $result = $this->database->prepare($login) or die($this->database->error);
+        $result->execute([$email]);
+
+        if($result == true){
+            $this->session->set('logged_id', true);
+            return $response->withStatus(200)->withJson($success);
+        }
+        else {
+            return $response->withStatus(404)->withJson($error);
+        }
     }
 
     public function newAdmin(Request $request, Response $response){
@@ -88,7 +89,7 @@ class Admin{
             if(isset($data)){
                 header('Content-Type: application/json');
                 echo json_encode($data);
-                //return $response->withJson(200);
+                return $response->withJson(200);
             }
         }else{
             return $response->withJson(400);
@@ -137,6 +138,9 @@ class Admin{
 
     }
 
-
-
 }
+
+
+//echo $twig->render('login.twig');
+
+?>

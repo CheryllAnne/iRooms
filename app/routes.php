@@ -57,8 +57,14 @@ $app = new Slim\App([
 //    $rooms = new Rooms($admin, $session, $member, $member_profile);
 //    return $rooms;
 //};
+$app->get('/', Home::class . ':index');
+
+$app->get('/login', Home::class . ':login');
 
 $app->group('/v1/admin', function () use ($app){
+
+//    $app->group('/', Admin::class . ':index');
+    //$app->post('/login', Admin::class . ':adLogin');
 
     $app->post('/new', Admin::class . ':newAdmin');
 
@@ -67,11 +73,13 @@ $app->group('/v1/admin', function () use ($app){
 
 $app->group('/v1/member', function () use ($app){
 
+    $app->post('/login', Member::class . ':mLogin');
+
     $app->post('/new', Member::class . ':newMember');
 
     $app->get('/view', Member::class . ':viewMembers');
 });
 
-$app->get('/', Home::class . ':index');
 
-$app->run();
+
+//$app->run();

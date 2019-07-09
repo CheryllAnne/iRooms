@@ -13,20 +13,19 @@ class Home{
         return $this->value[$name];
     }
 
-    public function connect(){
-        $servername = "localhost:3306";
-        $username = "root";
-        $password = "root";
-
-        $db = new PDO("mysql:host=$servername;dbname=iRoom;charset=utf8mb4", $username, $password);
-        return $db;
-    }
-
     public function index(){
         $loader = new Twig\Loader\FilesystemLoader(dirname(__DIR__,2) . '/public/views');
         //dirname(__DIR__,2) . '/dorne/views'
         $twig = new Twig\Environment($loader);
-
+        //return $twig;
         echo $twig->render('index.twig');
+    }
+
+    public function login(){
+        $loader = new Twig\Loader\FilesystemLoader(dirname(__DIR__,2) . '/public/views');
+        //dirname(__DIR__,2) . '/dorne/views'
+        $twig = new Twig\Environment($loader);
+        //return $twig;
+        echo $twig->render('login.twig');
     }
 }

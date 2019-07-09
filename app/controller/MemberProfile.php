@@ -10,18 +10,15 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 error_reporting(E_ALL ^ E_NOTICE);
 
+require_once 'AppController.php';
 require_once 'Admin.php';
 require_once 'Session.php';
 
-class MemberProfile{
+class MemberProfile extends AppController {
 
-    public function __construct($admin, $member, $session) {
-        //parent::__construct($admin);
-        $this->admin = $admin;
+    public function __construct($session, $member) {
+        parent::__construct( $session );
         $this->member = $member;
-        $this->session = $session;
-        $this->database = $this->admin->connect();
-
     }
 
     public function contactDetails(Request $request, Response $response){
