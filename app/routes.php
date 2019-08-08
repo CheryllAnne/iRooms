@@ -21,54 +21,19 @@ $app = new Slim\App([
     ]
 ]);
 
-//$container = $app->getContainer();
-//
-//$container['Session'] = function ($container){
-//    $session = new Session();
-//    return $session;
-//};
-//
-//$container['Admin'] = function ($container){
-//    $session = $container->get('Session');
-//    $admin = new Admin($session);
-//    return $admin;
-//};
-//
-//$container['Member'] = function ($container){
-//    $admin = $container->get('Admin');
-//    $session = $container->get('Session');
-//    $member = new Member($admin, $session);
-//    return $member;
-//};
-//
-//$container['MemberProfile'] = function ($container){
-//    $admin = $container->get('Admin');
-//    $member = $container->get('Member');
-//    $session = $container->get('Session');
-//    $member_profile = new MemberProfile($admin, $member, $session);
-//    return $member_profile;
-//};
-//
-//$container['Rooms'] = function ($container){
-//    $admin = $container->get('Admin');
-//    $session = $container->get('Session');
-//    $member = $container->get('Member');
-//    $member_profile = $container->get('MemberProfile');
-//    $rooms = new Rooms($admin, $session, $member, $member_profile);
-//    return $rooms;
-//};
-$app->get('/', Home::class . ':index');
-
-$app->get('/login', Home::class . ':login');
-
 $app->group('/v1/admin', function () use ($app){
 
 //    $app->group('/', Admin::class . ':index');
-    //$app->post('/login', Admin::class . ':adLogin');
+    $app->post('/login', Admin::class . ':adLogin');
+    // complete this function!!
 
     $app->post('/new', Admin::class . ':newAdmin');
 
     $app->get('/view', Admin::class . ':viewAdmins');
+
+    $app->get('/viewList', Admin::class . ':viewList');
+
+
 });
 
 $app->group('/v1/member', function () use ($app){
@@ -77,9 +42,49 @@ $app->group('/v1/member', function () use ($app){
 
     $app->post('/new', Member::class . ':newMember');
 
-    $app->get('/view', Member::class . ':viewMembers');
+    $app->get('/view', Member::class . ':viewMember');
+
+
+
+    $app->get('/rooms', Member::class . ':viewListofRooms');
+
+    $app->post('/delete/{roomID}', Member::class . ':roomMDelete');
+
 });
 
+$app->group('/v1/room', function () use ($app){
 
+    $app->get('/view', Rooms::class . ':viewRooms');
+
+    $app->get('/viewARoom/{roomID}', Rooms::class . ':viewARoom');
+
+    $app->post('/add', Rooms::class . ':roomAdd');
+
+    $app->put('/edit/{id}', Rooms::class . ':roomEdit');
+
+    $app->post('/delete/{roomID}', Rooms::class . ':roomDelete');
+
+    $app->get('/search', Rooms::class . ':findRoom');
+});
+
+$app->get('/', Home::class . ':index');
+
+$app->get('/login', Home::class . ':login');
+
+$app->get('/adminLogin', Home::class . ':adminLogin');
+
+$app->get('/listings', Home::class . ':rooms');
+
+$app->get('/admin', Home::class . ':admin');
+
+$app->get('/adminList', Home::class . ':adminList');
+
+$app->get('/members', Home::class . ':members');
+
+$app->get('/details', Home::class . ':memDetails');
+
+$app->get('/addListing', Home::class . ':addList');
+
+$app->get('/memberProfile', Home::class . ':memProfile');
 
 //$app->run();

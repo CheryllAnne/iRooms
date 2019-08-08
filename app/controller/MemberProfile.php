@@ -26,40 +26,46 @@ class MemberProfile extends AppController {
         $error = "Error! Please try again";
         $success = "New Member added!";
 
-        $username = json_decode($request->getBody())->username;
-        $address = json_decode($request->getBody())->address;
-        $state = json_decode($request->getBody())->state;
-        $email = json_decode($request->getBody())->email;
-        $contactNo = json_decode($request->getBody())->contactNo;
-        $background = json_decode($request->getBody())->background;
-        $addDetails = "Insert into UserProfile (name, address, state, email, contactNo, company_background) VALUES (??????)";
-        $result = $this->database->prepare($addDetails) or die($this->database->error);
-        $result->execute([$username, $address, $state, $email, $contactNo, $background]);
+        $contact = $request->getParsedBody();
+        $username = $contact['name'];
+//        $address = json_decode($request->getBody())->address;
+//        $state = json_decode($request->getBody())->state;
+        $email = $contact['email'];
+        $contactNo = $contact['contactNo'];
+        $background = $contact['company_background'];
+        $addDetails = "Insert into UserProfile (name, email, contactNo, company_background) VALUES (?,?,?,?)";
+        $result = $this->database->prepare($addDetails);
+        $result->execute([$username, $email, $contactNo, $background]);
 
         if($result == true){
-            return $response->withStatus(200)->withJson($success);
+            $this->session->flash('add', ' Contact Details Updated!');
+
         }
         else {
-            return $response->withStatus(400)->withJson($error);
+            $this->session->flash('error', 'An ERROR has occured');
         }
+
 
     }
 
-    public function viewCD(Request $request, Response $response){
+    public function viewCD(Request $request, Response $response, $args){
 
-        $viewCD = "Select * from UserProfile order by id desc ";
-        $result = $this->database->query($viewCD);
+        $count = 0;
+        $contactID = $args['id'];
+        $viewCD = "Select * from UserProfile where id = ?";
+        $result = $this->database->prepare($viewCD);
+        $result->execute([$contactID]);
 
             if ($result == true){
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-                    $data[] = $row;
+                    $contact[] = $row;
+                    $count = $count + 1;
                 }
 
-                if (isset($data)){
-                    header('Content-Type: application/json');
-                    echo json_encode($data);
-                    return $response->withJson(200);
-                }
+                $this->session->set('contact', $contact);
+
+                $this->twig->render('MemberProfile.twig', array('i' => $count, 'id' => $contactID, 'contact' => $this->session->get('contact')));
+
             } else{
                 return $response->withJson(400);
             }

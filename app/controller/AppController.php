@@ -13,6 +13,7 @@ class AppController {
         //$this->admin = $admin;
         $this->session = $session;
         $this->database = $this->connect();
+        $this->twig = $this->twig();
     }
 
     public function connect(){
@@ -24,7 +25,9 @@ class AppController {
         return $db;
     }
 
-    public function foo() {
-
+    public function twig() {
+        $loader = new Twig\Loader\FilesystemLoader(dirname(__DIR__,2) . '/public/views');
+        $twig = new Twig\Environment($loader);
+        return $twig;
     }
 }

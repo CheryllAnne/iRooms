@@ -9,6 +9,7 @@
         "twbs/bootstrap": "4.3.1"
     },
     "require-dev": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+      "ext-mysqli": "*"
     }
 }

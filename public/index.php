@@ -7,8 +7,11 @@
  */
 error_reporting(E_ALL ^ E_NOTICE);
 require "../vendor/autoload.php";
+include_once "../app/controller/AppController.php";
 include_once '../app/controller/Session.php';
+include_once '../app/controller/MemberProfile.php';
 include_once '../app/controller/Member.php';
+include_once '../app/controller/Rooms.php';
 include_once '../app/routes.php';
 
 $container = $app->getContainer();
@@ -31,20 +34,34 @@ $container['Member'] = function ($container){
     return $member;
 };
 
-$container['MemberProfile'] = function ($container){
+$container['Home'] = function ($container){
     //$admin = $container->get('Admin');
-    $member = $container->get('Member');
     $session = $container->get('Session');
-    $member_profile = new MemberProfile($member, $session);
+    $home = new Home($session);
+    return $home;
+};
+
+$container['AppController'] = function ($container){
+    //$admin = $container->get('Admin');
+    $session = $container->get('Session');
+    $app_controller = new AppController($session);
+    return $app_controller;
+};
+
+$container['MemberProfile'] = function ($container){
+//    $admin = $container->get('Admin');
+    $session = $container->get('Session');
+    $member = $container->get('Member');
+    $member_profile = new MemberProfile($session, $member);
     return $member_profile;
 };
 
 $container['Rooms'] = function ($container){
-    $admin = $container->get('Admin');
+    //$admin = $container->get('Admin');
     $session = $container->get('Session');
     $member = $container->get('Member');
     $member_profile = $container->get('MemberProfile');
-    $rooms = new Rooms($admin, $session, $member, $member_profile);
+    $rooms = new Rooms($session, $member, $member_profile);
     return $rooms;
 };
 

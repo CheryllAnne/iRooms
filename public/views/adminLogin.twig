@@ -33,7 +33,7 @@
                 <div class="search-close-btn" id="closeBtn">
                     <i class="pe-7s-close-circle" aria-hidden="true"></i>
                 </div>
-                <form action="/v1/room/search" method="get">
+                <form action="#" method="get">
                     <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destination">
                     <input type="submit" class="d-none" value="submit">
                 </form>
@@ -50,25 +50,25 @@
                 <nav class="h-100 navbar navbar-expand-lg">
                     <a class="navbar-brand" href="/">iRooms</a>
                     {#<a class="navbar-brand" href="/"><img src="/res/img/core-img/logo.png" alt=""></a>#}
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-                    <!-- Nav -->
-                    <div class="collapse navbar-collapse" id="dorneNav">
-                        <ul class="navbar-nav mr-auto" id="dorneMenu">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/">Home</a>
-                                    <a class="dropdown-item" href="explore.twig">Explore</a>
-                                    <a class="dropdown-item" href="/listings">Listing</a>
+                    {#<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>#}
+                    {#<!-- Nav -->#}
+                    {#<div class="collapse navbar-collapse" id="dorneNav">#}
+                        {#<ul class="navbar-nav mr-auto" id="dorneMenu">#}
+                            {#<li class="nav-item active">#}
+                                {#<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>#}
+                            {#</li>#}
+                            {#<li class="nav-item dropdown">#}
+                                {#<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>#}
+                                {#<div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+                                    {#<a class="dropdown-item" href="/">Home</a>#}
+                                    {#<a class="dropdown-item" href="explore.twig">Explore</a>#}
+                                    {#<a class="dropdown-item" href="/listings">Listing</a>#}
                                     {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
                                     {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="/v1/room/view" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Listings </a>
+                                {#</div>#}
+                            {#</li>#}
+                            {#<li class="nav-item dropdown">#}
+                                {#<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listings <i class="fa fa-angle-down" aria-hidden="true"></i></a>#}
                                 {#<div class="dropdown-menu" aria-labelledby="navbarDropdown2">#}
                                     {#<a class="dropdown-item" href="/">Home</a>#}
                                     {#<a class="dropdown-item" href="explore.twig">Explore</a>#}
@@ -76,24 +76,24 @@
                                     {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
                                     {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
                                 {#</div>#}
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="addListing.twig">Contact</a>
-                            </li>
-                        </ul>
-                        <!-- Search btn -->
-                        <div class="dorne-search-btn">
-                            <a id="search-btn" href="/v1/room/search"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
-                        </div>
-                        <!-- Signin btn -->
-                        <div class="dorne-signin-btn">
-                            <a rel="stylesheet" type="text/css" href="/adminLogin">Sign in as Admin </a>
-                        </div>
-                        <!-- Add listings btn ../../app/controller/Admin.php-->
-                        <div class="dorne-add-listings-btn">
-                            <a href="#" class="btn dorne-btn">+ Add Listings</a>
-                        </div>
-                    </div>
+                            {#</li>#}
+                            {#<li class="nav-item">#}
+                                {#<a class="nav-link" href="addListing.twig">Contact</a>#}
+                            {#</li>#}
+                        {#</ul>#}
+                        {#<!-- Search btn -->#}
+                        {#<div class="dorne-search-btn">#}
+                            {#<a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>#}
+                        {#</div>#}
+                        {#<!-- Signin btn -->#}
+                        {#<div class="dorne-signin-btn">#}
+                            {#<a rel="stylesheet" type="text/css" href="/admin">Sign in as Admin </a>#}
+                        {#</div>#}
+                        {#<!-- Add listings btn ../../app/controller/Admin.php-->#}
+                        {#<div class="dorne-add-listings-btn">#}
+                            {#<a href="#" class="btn dorne-btn">+ Add Listings</a>#}
+                        {#</div>#}
+                    {#</div>#}
                 </nav>
             </div>
         </div>
@@ -107,21 +107,21 @@
         <div class="row h-100 align-items-center justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="hero-content">
-                    <h2>Join us now!</h2>
-                    <h4>This is the best site to find comfort!</h4>
+                    <h2>Welcome Back!</h2>
+                    <h4>This page is strictly for admin access!</h4>
                 </div>
                 <!-- Hero Search Form -->
                 <div class="hero-search-form">
                     <!-- Tabs -->
                     <div class="nav nav-tabs" id="heroTab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Sign In</a>
-                        <a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Register</a>
+                        {#<a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Register</a>#}
                     </div>
                     <!-- Tabs Content -->
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
                             <h6>Welcome Back!</h6>
-                            <form action="/v1/member/login" method="post">
+                            <form action="/v1/admin/login" method="post">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text br-15"><i class="fas fa-user-graduate"></i></span>
@@ -138,41 +138,9 @@
 
                                 </div>
                                 <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true" name="loginbtn"></i> Sign In</button>
-                            </form>
-                            <br/><h6>{{ session.fail }}</h6>
-                        </div>
 
-                        <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
-                            <h6>What are you looking for?</h6>
-                            <form action="/v1/member/new" method="post">
-                                <div class="input-group">
-                                    <input type="text" name="first_name" placeholder="First Name" class="form-control"  required value="">
-                                    {{ name_error }}{{ un_error }}
-                                </div>
-                                <div class="input-group">
-                                    <input type="text" name="last_name" placeholder="Last Name" class="form-control"  required value="">
-                                    {{ name_error }}{{ un_error }}
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" name="email" placeholder="Email" class="form-control"  required value="">
-                                    {{ email_error }}{{ v_error }}{{ mail_error }}
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="password" name="password" placeholder="Password" class="form-control" required value="">
-                                    {{ p1_error }}
-                                </div>
-                                {#<div class="input-group mt-3">#}
-                                    {#<input type="password" name="password2" placeholder="Confirm Password" class="form-control" required value={{ password2 }}>#}
-                                    {#{{ p2_error }}#}
-                                {#</div>#}
-
-                                {#{% if success == true %}#}
-                                    {#<div class="alert alert-success">#}
-                                        {#{{ success }}#}
-                                    {#</div>#}
-                                {#{% endif %}#}
-                                <button type="submit" class="btn dorne-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Sign Up</button>
                             </form>
+                        <br/><h6>{{ error }}</h6>
                         </div>
                     </div>
                 </div>
@@ -231,7 +199,7 @@
 <!-- All Plugins js -->
 <script src="/res/js/others/plugins.js"></script>
 <!-- Active JS -->
-    <script src="/res/js/active.js"></script>
+<script src="/res/js/active.js"></script>
 </body>
 
 </html>

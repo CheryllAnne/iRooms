@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Dorne - Directory &amp; Listing Template | Contact</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/res/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link href="/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="/res/css/responsive/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+    {#<!-- Preloader -->#}
+    {#<div id="preloader">#}
+        {#<div class="dorne-load"></div>#}
+    {#</div>#}
+
+    <!-- ***** Search Form Area ***** -->
+    <div class="dorne-search-form d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-close-btn" id="closeBtn">
+                        <i class="pe-7s-close-circle" aria-hidden="true"></i>
+                    </div>
+                    <form action="/v1/room/search" method="get">
+                        <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destination">
+                        <input type="submit" class="d-none" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg">
+                        {#<a class="navbar-brand" href="/"><img src="/res/img/core-img/logo.png" alt=""></a>#}
+                        <a class="navbar-brand" href="/">iRooms</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <!-- Nav -->
+                        <div class="collapse navbar-collapse" id="dorneNav">
+                            <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/">Home</a>
+                                        <a class="dropdown-item" href="explore.twig">Explore</a>
+                                        <a class="dropdown-item" href="/v1/room/view">Listing</a>
+                                        {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
+                                        {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link " href="/v1/room/view" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Listings </a>
+                                    {#<div class="dropdown-menu" aria-labelledby="navbarDropdown2">#}
+                                    {#<a class="dropdown-item" href="/">Home</a>#}
+                                    {#<a class="dropdown-item" href="explore.twig">Explore</a>#}
+                                    {#<a class="dropdown-item" href="v1/room/view">Listing</a>#}
+                                    {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
+                                    {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
+                                    {#</div>#}
+                                </li>
+                                <li class="nav-item active dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Room <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/v1/member/rooms">All Room</a>
+                                        <a class="dropdown-item" href="/addListing">Add Room</a>
+                                        {#<a class="dropdown-item" href=""></a>#}
+                                        {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
+                                        {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Search btn -->
+                            <div class="dorne-search-btn">
+                                <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                            </div>
+                            <!-- Signin btn -->
+                            <div class="dorne-signin-btn">
+
+                                {#{% for i in range(0,i-1) %}#}
+                                <a href="#">Hi,{{ first_name }}</a>
+                                {#{% endfor %}#}
+                            </div>
+                            <!-- Add listings btn -->
+                            <div class="dorne-add-listings-btn">
+                                <a href="/details" class="btn dorne-btn">My Profile</a>
+                            </div>
+                            <div class="dorne-add-listings-btn">
+                                <a href="/" class="btn dorne-btn">Logout</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Breadcumb Area Start ***** -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/res/img/bg-img/hero-1.jpg)">
+    </div>
+    <!-- ***** Breadcumb Area End ***** -->
+
+    <!-- ***** Contact Area Start ***** -->
+    <div class="dorne-contact-area d-md-flex" id="contact">
+        <!-- Contact Form Area -->
+        <div class="contact-form-area equal-height">
+            {#<div class="contact-text">#}
+                {#<h4>Hello, Get in touch with us</h4>#}
+                {#<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nibh sed mi ullamcorper rhoncus.#}
+                    {#Curabitur pulvinar vel augue sit amet vestibulum. Proin tempus lacus porta lorem blandit aliquam#}
+                    {#eget quis ipsum. Vivamus accumsan consequat ligula non volutpat. Sed mollis orci non cursus vestibulum.#}
+                    {#Pellentesque vitae est a augue laoreet venenatis sed eu felis. Sed cursus magna nec turpis ullamcorper,#}
+                    {#eget rutrum felis egestas. Nunc odio ex, fermentum efficitur nunc vitae, efficitur hendrerit diam.#}
+                    {#Lorem ipsum dolor sit amet, consectetur.</p>#}
+
+                {#<div class="contact-info d-lg-flex">#}
+                    {#<div class="single-contact-info">#}
+                        {#<h6><i class="fa fa-map-signs" aria-hidden="true"></i> Main Avenue Soho, NY</h6>#}
+                        {#<h6><i class="fa fa-map-signs" aria-hidden="true"></i> No. 25-33</h6>#}
+                    {#</div>#}
+                    {#<div class="single-contact-info">#}
+                        {#<h6><i class="fa fa-envelope-o" aria-hidden="true"></i> contact@yourbusiness.com</h6>#}
+                        {#<h6><i class="fa fa-phone" aria-hidden="true"></i> +34 567 22478 49567</h6>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {{ errormsg }}
+            <div class="contact-form">
+                <div class="contact-form-title">
+                    <h6>Add Listings</h6>
+                </div>
+                <form action="/v1/room/add" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <input type="text" name="roomName" class="form-control" placeholder="Room Name">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input type="text" name="roomType" class="form-control" placeholder="Room Type">
+                        </div>
+                        <div class="col-12">
+                            <textarea name="description" class="form-control" id="Description" cols="30" rows="10" placeholder="Room Description"></textarea>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input type="text" name="occupancy" class="form-control" placeholder="Max no. of Occupancy ">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input type="text" name="price" class="form-control" placeholder="Price">
+                        </div>
+
+                        <div class="col-12">
+                            <textarea name="address" class="form-control" id="Address" cols="30" rows="10" placeholder="Address"></textarea>
+                        </div>
+                            <select class="custom-select" name="state">
+                                <option selected>State</option>
+                                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                <option value="Penang">Penang</option>
+                                <option value="Perak">Perak</option>
+                                <option value="Kedah">Kedah</option>
+                                <option value="Johor">Johor</option>
+                            </select>
+
+                        <br/><br/>
+                        <div class="col-12">
+                            <button type="submit" class="btn dorne-btn">ADD ROOM</button>
+                        </div>
+
+                    </div>
+                    <br/>{{ session.add }}{{ session.error }}
+                </form>
+            </div>
+        </div>
+        {#<!-- Map Area -->#}
+        {#<div class="dorne-map-area equal-height">#}
+            {#<div id="googleMap"></div>#}
+        {#</div>#}
+    </div>
+    <!-- ***** Contact Area End ***** -->
+
+    <!-- ****** Footer Area Start ****** -->
+    <footer class="dorne-footer-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-md-flex align-items-center justify-content-between">
+                    <div class="footer-text">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                    <div class="footer-social-btns">
+                        <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+                        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ****** Footer Area End ****** -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="/res/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="/res/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="/res/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="/res/js/others/plugins.js"></script>
+    <!-- Google Maps js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+    <script src="/res/js/google-map/map-active.js"></script>
+    <!-- Active JS -->
+    <script src="/res/js/active.js"></script>
+</body>
+
+</html>

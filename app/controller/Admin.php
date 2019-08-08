@@ -36,22 +36,30 @@ class Admin extends AppController {
 
     public function adLogin(Request $request, Response $response){
 
-        $error = "An error has occured! Please try again";
+
         $success = "Logged In!";
 
-        $email = json_decode($request->getBody())->email; //striptags to avoid cross site scripting
-        //$password = json_decode($request->getBody())->password;
+        $adLogin = $request->getParsedBody();
+        $email = $adLogin['email']; //striptags to avoid cross site scripting
+        $password = $adLogin['password'];
         //$password = password_hash($password1, PASSWORD_DEFAULT);
-        $login = "SELECT * FROM `admin` WHERE email = ? "; ///////////
-        $result = $this->database->prepare($login) or die($this->database->error);
-        $result->execute([$email]);
+        $login = $this->database->prepare("SELECT * FROM `admin` WHERE email = ? AND password = ?"); ///////////
+        $result = $login->execute([$email, $password]);
+        $row = $login->fetch( PDO::FETCH_ASSOC );
 
-        if($result == true){
+
+        if($row == true){
+
+            if(password_verify($password, $adLogin['password']))
             $this->session->set('logged_id', true);
-            return $response->withStatus(200)->withJson($success);
+            $this->session->set('admin', $adLogin);
+            echo $this->twig->render('admin.twig', array('adLogin' => $adLogin, 'rooms' => $this->session->get('rooms')));
+//            return $response->withStatus(200)->withJson($success);
         }
         else {
-            return $response->withStatus(404)->withJson($error);
+
+            $error = "Login Unsuccessful! Please try again";
+            echo $this->twig->render('adminLogin.twig', array('error' => $error));
         }
     }
 
@@ -59,61 +67,70 @@ class Admin extends AppController {
 
         $error = "Error! Please try again";
         $success = "Admin added!";
-
-        $adname = json_decode($request->getBody())->adname;
-        $email = json_decode($request->getBody())->email;
-        $password = json_decode($request->getBody())->password;
-        var_dump($adname);
+        $admin = $request->getParsedBody();
+        $adname = $admin['adname'];
+        $email = $admin['email'];
+        $password = $admin['password'];
+//        var_dump($adname);
         $newAdmin = "Insert into admin (name, email, password) VALUES (?,?,?)";
         $result = $this->database->prepare($newAdmin)->execute([$adname, $email, $password]);
         //$result->execute([$adname, $email, $password]);
 
         if($result == true){
-            return $response->withStatus(200)->withJson($success);
+            return $response->withRedirect('/admin');
         }
         else{
-            return $response->withStatus(404)->withJson($error);
+            return $response->withRedirect('/');
         }
     }
 
     public function viewAdmins(Request $request, Response $response){
 
-        $adminView = "Select * from admin order by id";
+//        $error = "Error";
+        $adminView = "Select * from `admin` order by id";
         $result = $this->database->query($adminView);
 
         if($result == true){
-            while($row = $result->fetch( PDO::FETCH_ASSOC)){
-                $data[] = $row;
+
+            while ( $row = $result->fetch( PDO::FETCH_ASSOC ) ) {
+                $admin[]= $row;
+
             }
 
-            if(isset($data)){
-                header('Content-Type: application/json');
-                echo json_encode($data);
-                return $response->withJson(200);
-            }
+            //$this->session->set('logged_id', true);
+            $this->session->set('admin', $admin);
+            echo $this->twig->render('viewList.twig', array('admin' => $this->session->get('admin'), 'adname' => $this->session->get('adname') ,
+                'email' => $this->session->get('email')));
+//            return $response->withRedirect('/adminList');
+
         }else{
-            return $response->withJson(400);
+            return $response->withRedirect('/');
         }
     }
 
-    public function viewMembers(Request $request, Response $response){
+    public function viewList( Request $request, \Slim\Http\Response $response ) {
 
-        $memberView = "Select * from UserAcc order by id";
-        $result = $this->database->query($memberView);
-
-        if($result == true){
-            while($row = $result->fetch( PDO::FETCH_ASSOC)){
-                $data[] = $row;
+        $count = 0;
+        $viewRoom = "Select * from `room` order by roomID";
+        $result = $this->database->query( $viewRoom );
+        if ( $result == true ) {
+            while ( $row = $result->fetch( PDO::FETCH_ASSOC ) ) {
+                $rooms[] = $row;
+                $count = $count + 1;
             }
 
-            if(isset($data)){
-                header('Content-Type: application/json');
-                echo json_encode($data);
-                //return $response->withJson(200);
-            }
-        }else{
-            return $response->withJson(400);
+            $this->session->set('rooms', $rooms);
+//            $rooms2 = $this->session->get('rooms');
+//            var_dump($rooms);
+            echo $this->twig->render('adminManage.twig', array('i' => $count, 'rooms' => $this->session->get('rooms'), 'roomName' => $this->session->get('roomName'),
+                'roomType' => $this->session->get('roomType'), 'description' => $this->session->get('description')));
+
+//            }
+
+        } else {
+            return $response->withRedirect('/');
         }
+
     }
 
     public function deleteMP($request, $response, $args) {
@@ -131,8 +148,6 @@ class Admin extends AppController {
             return $response->withStatus(404)->withJson($error);
         }
     }
-
-
 
     public function addState(){
 

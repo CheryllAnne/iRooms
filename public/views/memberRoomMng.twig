@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>iRooms - Find Comfort!</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/res/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link href="/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="/res/css/responsive/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Preloader -->
+<div id="preloader">
+    <div class="dorne-load"></div>
+</div>
+
+<!-- ***** Search Form Area ***** -->
+<div class="dorne-search-form d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="search-close-btn" id="closeBtn">
+                    <i class="pe-7s-close-circle" aria-hidden="true"></i>
+                </div>
+                <form action="/v1/room/search" method="get">
+                    <input type="search" name="caviarSearch" id="search" placeholder="Search Your Desire Destination">
+                    <input type="submit" class="d-none" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header_area" id="header">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-12 h-100">
+                <nav class="h-100 navbar navbar-expand-lg">
+                    {#<a class="navbar-brand" href="/"><img src="/res/img/core-img/logo.png" alt=""></a>#}
+                    <a class="navbar-brand" href="/memberProfile">iRooms</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                    <!-- Nav -->
+                    <div class="collapse navbar-collapse" id="dorneNav">
+                        <ul class="navbar-nav mr-auto" id="dorneMenu">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/memberProfile">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/memberProfile">Home</a>
+                                    <a class="dropdown-item" href="explore.twig">Explore</a>
+                                    <a class="dropdown-item" href="/v1/room/view">Listing</a>
+                                    {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
+                                    {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
+                                </div>
+                            </li>
+                            {#<li class="nav-item active">#}
+                            <li class="nav-item active dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Room <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/v1/member/rooms">All Room</a>
+                                    <a class="dropdown-item" href="/addListing">Add Room</a>
+                                {#<a class="nav-link" href="/v1/room/view" id="navbarDropdown2" role="button" aria-haspopup="true" aria-expanded="false">Listings</a>#}
+                                {#<div class="dropdown-menu" aria-labelledby="navbarDropdown2">#}
+                                {#<a class="dropdown-item" href="/">Home</a>#}
+                                {#<a class="dropdown-item" href="explore.twig">Explore</a>#}
+                                {#<a class="dropdown-item" href="/listings">Listing</a>#}
+                                {#<a class="dropdown-item" href="single-listing.twig">Single Listing</a>#}
+                                {#<a class="dropdown-item" href="addListing.twig">Contact</a>#}
+                                </div>
+                            </li>
+                            {#<li class="nav-item">#}
+                                {#<a class="nav-link" href="addListing.twig">Contact</a>#}
+                            {#</li>#}
+                        </ul>
+                        <!-- Search btn -->
+                        <div class="dorne-search-btn">
+                            <a id="search-btn" href=""><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                        </div>
+                        <!-- Signin btn -->
+                        {#<div class="dorne-signin-btn">#}
+                        {#<a rel="stylesheet" type="text/css" href="/login">Sign in as Admin</a>#}
+                        {#</div>#}
+                        <!-- Add listings btn ../../app/controller/Admin.php-->
+                        <div class="dorne-add-listings-btn">
+                            <a href="/" class="btn dorne-btn">Logout</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+<!-- ***** Breadcumb Area Start ***** -->
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/res/img/bg-img/hero-1.jpg)"></div>
+<!-- ***** Breadcumb Area End ***** -->
+
+<!-- ***** Listing Destinations Area Start ***** -->
+<section class="dorne-listing-destinations-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading dark text-center">
+                    <span></span>
+                    <h4>Available Rooms</h4>
+                    <p>Editor’s pick</p>
+                    {{ success }}
+                </div>
+            </div>
+        </div>
+
+        {#!-- Page Content -->#}
+        {#<div class="container">#}
+
+        {#<!-- Page Heading -->#}
+        {#<h1 class="my-4">Page Heading#}
+        {#<small>Secondary Text</small>#}
+        {#</h1>#}
+
+        {#<!-- Project One -->#}
+        {#<div class="row">#}
+        {#<div class="col-md-7">#}
+        {#<a href="#">#}
+        {#<img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">#}
+        {#</a>#}
+        {#</div>#}
+        {#<div class="col-md-5">#}
+        {#<h3>Project One</h3>#}
+        {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>#}
+        {#<a class="btn btn-primary" href="#">View Project</a>#}
+        {#</div>#}
+        {#</div>#}
+        {#<!-- /.row -->#}
+
+        {#<hr>#}
+        {#</div>>#}
+
+        {% for i in range(0,i-1) %}
+            <div class="single-listing-menu d-flex justify-content-between">
+                <div class="listing-menu-title">
+                    <form name=" member" action="/v1/member/delete/{{ rooms[i].roomID }}" method="post">
+                        <div class="row">
+
+                            <!-- Single Features Area -->
+                            <div class="col-md-7">
+                                <a href="#">
+                                    <img class="img-fluid rounded mb-3 mb-md-0" src="/res/img/bg-img/feature-1.jpg" alt="" height="50" width="150">
+                                </a>
+                            </div>
+                            <div class="col-md-5">
+                                <h3>{{ rooms[i].roomName }}</h3>
+                                <p><h5>{{ rooms[i].roomType }}</h5>
+                                <p>{{ rooms[i].description }}</p>
+                                {#<a class="btn btn-primary" href="">View Room</a>#}
+                                {#<a class="btn btn-primary"  href="/v1/room/edit">Edit Room</a>#}
+                                <button class="btn btn-primary" >Delete Room</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+        {#<div class="row">#}
+        {#<!-- Single Features Area -->#}
+        {#{% for i in range(0,i-1) %}#}
+        {#<div class="col-md-7">#}
+        {#<a href="#">#}
+        {#<img class="img-fluid rounded mb-3 mb-md-0" src="/res/img/bg-img/feature-1.jpg" alt="">#}
+        {#</a>#}
+        {#</div>#}
+        {#<div class="col-md-5">#}
+        {#<h3>{{ rooms[i].roomName }}</h3>#}
+        {#<p><br/>{{ rooms[i].roomType }}</h5>#}
+        {#<p>{{ rooms[i].description }}</p>#}
+        {#<a class="btn btn-primary" href="#">View Project</a>#}
+        {#</div>#}
+        {#{% endfor %}#}
+
+        {#</div>#}
+
+    </div>
+</section>
+<!-- ***** Listing Destinations Area End ***** -->
+
+<!-- ****** Footer Area Start ****** -->
+<footer class="dorne-footer-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-md-flex align-items-center justify-content-between">
+                <div class="footer-text">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+                <div class="footer-social-btns">
+                    <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+                    <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+                    <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ****** Footer Area End ****** -->
+
+<!-- jQuery-2.2.4 js -->
+<script src="/res/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="/res/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap-4 js -->
+<script src="/res/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="/res/js/others/plugins.js"></script>
+<!-- Active JS -->
+<script src="/res/js/active.js"></script>
+</body>
+
+</html>
+
+{#!-- Page Content -->#}
+{#<div class="container">#}
+
+    {#<!-- Page Heading -->#}
+    {#<h1 class="my-4">Page Heading#}
+        {#<small>Secondary Text</small>#}
+    {#</h1>#}
+
+    {#<!-- Project One -->#}
+    {#<div class="row">#}
+        {#<div class="col-md-7">#}
+            {#<a href="#">#}
+                {#<img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">#}
+            {#</a>#}
+        {#</div>#}
+        {#<div class="col-md-5">#}
+            {#<h3>Project One</h3>#}
+            {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>#}
+            {#<a class="btn btn-primary" href="#">View Project</a>#}
+        {#</div>#}
+    {#</div>#}
+    {#<!-- /.row -->#}
+
+    {#<hr>#}
